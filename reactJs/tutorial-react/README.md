@@ -184,3 +184,124 @@ both `Chrome` and `Firefox` should have their own React Dev Tool browser extensi
 
 ## Completion
 
+To Complete the game, we need to alternate placing "X" and "O" on the board, and deternimint the winner
+
+### Lifting State up
+
+Currently, each `Square` component maintains the game's state.
+To check for winner, we'll maintain the value of the8 9 squares in one location
+
+We may thing `Board` should ask each `Square` for their state.
+Although this is possible, its *discouraged* because code will be difficult to understand, prone to bugs and hard to refactor.
+**Best Approach** is to store the game's state in `Board` instead of in each `Square`.
+`Board` can tell each `Square` what to display by passing a `prop`, just as when a number is passed to each `Square`
+
+**To Collect Data** from multiple children, or to have 2 child components communicate with each other.
+You need to **declare the shared state** in the parent component instead.
+*Parent* component can pass the state back down to the *children* using `props`.
+This keeps the child components in sync with each other and with the parent component
+
+Lifting the state into a parent component is common React components are refactored. *Le do it*
+
+Add a `constructor` to the `Board` and set its initial state to contain an array of 9 nulls corresponding to the 9 `Squares`
+
+```js
+class Board extends Component {
+    constructor (props) {
+        this.state = {
+            squares: Array(9).fill(null),
+        }
+    }
+
+    renderSquare(i) {
+        return <Square value={i} />
+    }
+}
+```
+
+When the `Board` is eventually filled, `this.state.squares` array will look something kile this
+
+```js
+[
+    'o' ,null   ,'x',
+    'x' ,'x'    ,'o'
+    'o' ,null   ,null,
+]
+```
+
+`Board`'s `renderSquare` is currently like this
+
+```js
+renderSquare(i) {
+    return <Square value={i} />
+}
+```
+
+Before, we pass *value prop down* from `Board` to show `0-8` in every `Square`
+In a different step, we replaced the num with `X` *determined* by the Square's own state.
+This is why `Square` currently ignores the `value` prop passed to it by the `Board`
+
+**NOW** we'll use the priong passing mechanism again.
+Modify the `Board` to instruct each `Square` about its current val (`x`, `o`, or `null`).
+We already defined `square` array in the `Board`'s constructor, we will modify the `Board`'s `renderSquare` to read from it.
+
+```js
+// board
+renderSquare(i) {
+    return <Square value={this.state.squares[i]} />
+}
+```
+
+Each `Square` will now recieve a `value` prop that will be either `x`, `o` and `null`
+
+Next, Lets change what happens when a `Square` is clicked. `Board` component now maintains which squares are filled.
+We need to create a way for the `Square` to update the `Board`'s state.
+Since State is considered to be `private` to a component that defined it, we *cant* update the `Board`'s state directly from `Square`
+
+Instead, we'll pass down a function from the `Board` to `Square`, and we'll have `Square` call that function when clicked
+We'll change `renderSquare` in `Board`
+
+```js
+renderSquare(i) {
+    return  (
+        <Square
+            value={this.state.Square[i]}
+            onClick={() => this.handleClick(i)}>
+    )
+}
+```
+
+> We split the returned element into multiple lines for readability, and added parentheses so that JS doesn't insert `;` after `return` and break the code
+
+OK Now we're passing down 2 props from `Board` to `Square`: the `value` and `onClick`.
+`onClick()` prop is a function that `Square` can call when clicked.
+Change these in `Square`
+
+- replace `this.state.value` with `this.props.value` in *Square*'s `render`
+- replace `this.setState()` with `this.props.onClick()` in *Square*'s `render`
+- Delete the `constructor` from `Square` because `Square` no longer keeps track of the game's state
+
+```js
+return (
+    <button 
+        className="square"
+        onClick={() => this.props.onClick()}>
+            {this.props.value}
+    </button>
+)
+```
+
+When `Suare` is clicked, the `onClick` func in the `Board` is called.
+This is how its achieved:
+
+1. the `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener
+2. When clicked, React will call the `onClick` event handler defined in `Square`'s `render` method
+3. this event handler calls `this.props.onClick()`. `Square`'s `onClick` prop was specified by the `Board`
+4. Since `Board` passed `onClick={() => this.handleClick(i)}` to `Square`, and calls `this.handleClick(i)` when clicked
+5. We haven't defined `handleClick()` so i'll crash
+
+> **NOTE**
+> 
+> the DOM `<button>`'s `onClick` attr has a special meaning to React because it is a built-in component.
+> For custom components(`Square`) 
+
