@@ -305,3 +305,100 @@ This is how its achieved:
 > the DOM `<button>`'s `onClick` attr has a special meaning to React because it is a built-in component.
 > For custom components(`Square`) 
 
+Lets add `handleClick`
+
+```js
+// Board.js
+handleClick(i) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X'
+    this.setState({ squares: squares })
+}
+```
+
+After the changes, the `Square` be filled when clicked, as usual.
+However, the **state** is stored in the `Board` component instead of the individual `Square` components.
+When `Board` state changes, `Square` component **re-renders** automatically
+Keeping state of all squares inside `Board` component will allow it to *determine the **winner*** 
+
+Since `Square` components no longer maintain state, `Square` components receives values from the `Board` Component and inform the `Board` when clicked
+in React terms, the `Square` components are now **Controlled Components**
+
+**NOTE** how `handleClick`, we call `.slice()` to **create a copy** of the `squares` array to modify instead of the existing array.
+Explanation in next section
+
+### Importance of immutability
+
+There are generally two approaches to changing data.
+
+- **directly** changing the data values (*mutation*)
+- **replace** the data with a new copy
+
+#### Change with mutation
+
+```js
+var player = {score:1, name:'Jeff'}
+player.score = 2
+//  direct change
+```
+
+#### Change without Mutation
+
+```js
+var player = {score: 1, name: 'jeff'}
+var newPlayer = Object.assign({}, player, {score: 2})
+
+// player is unchanged, newPlayer is {score: 2, name: 'Jeff'}
+// or with obj spread syntax proposal, you can write
+var newPlayerSpread = {...player, score: 2}
+```
+
+The result are the same. 
+BUT by **not mutating** we gain several benefits:
+
+- **Complex features became simple**
+  - *Immutability* makes complex features much easier to implement.
+  - Later we'll implement an *undo* feature.
+  - The *undo* action most of the time is a common requirement in applcations
+  - Avoiding direct data mutation lets us maintain previous versions of the game's history intact.
+- **Detecting changes**
+  - Detecting changes in mutable objects is difficult since they're directly modified.
+  - Detection requires mutable objects to be compared to previous copies of itself and the entire object tree to be traversed.
+  - Detecting changes in **immutable** obj is much easier. As there is clearly changes if the immutable obj being referenced is different from the previous one.
+- **Determining when to re-render**
+  - **Main benefit** of immutability is that it helps to build `pure componetnts`???
+  - Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering
+  - something about `shouldComponentUpdate()` in building *pure components* [here](https://reactjs.org/docs/optimizing-performance.html#examples)
+
+### Function Component
+
+So now lets change `Square` to be a **functional component**
+
+These are a way to write components that only contain a `render` method and **don't** have their own state.
+Instead of defining a class that `extends React.Component`, we can write a func that takes `props` as input and returns what should be rendered.
+Function components are less tedious to write than classes
+
+```js
+// rewrite square??
+
+function Square(props) {
+    return (
+        <button className="square" onClick={props.onClick}>
+            {props.value}
+        </button>
+    )
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
