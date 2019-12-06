@@ -390,11 +390,142 @@ function Square(props) {
 }
 ```
 
+We also changed `this.props` to just `props`
 
+> When changing the event button `onClick` event listener, note the use of parenthesis in `onClick={() => this.props.onClick()}`
+> with `onClick={props.onClick}`
 
+### Taking Turns
 
+Now lets implement marking `o` on the board.
 
+Lets first set `x` to be first by default via modifying the initial state in the `Board` constructor
 
+```js
+// Board.js
+constructor (props) {
+    super(props)
+    this.state = {
+        squares: Array(9).fill(null),
+        xIsNext: true,
+    }
+}
+```
+
+Each time a player moves, `xIsNext` will be flipped to determine who goes next.
+Then the state is saved. Update `handleClick` is `Board` as
+
+```js
+// Board.js
+handleClick(i) {
+    const squares = this.state.squares.slice()
+    squares[i] = this.state.xIsNext ? 'X' : 'O'
+    this.setState({
+        squares: squares,
+        xIsNext: !this.state.xIsNext,
+    })
+}
+```
+
+Lets also change `status` in `Board`'s `render` so that it displays who's turn is it
+
+```js
+// Board.js
+render() {
+    const status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O')
+    
+    return (
+        // ...
+    )
+}
+```
+
+### Declaring a winner
+
+OK lets now show who wins
+Copy this to `Somewhere`
+
+```js
+function calcWinner(squares) {
+    const lines = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ]
+
+    for ( let i = 0, i < lines.length; i++ ) {
+        const [a, b, c] = lines[i]
+        if (
+            squares[a] && 
+            squares[a] === squares[b] && 
+            squares[a] === squares c
+            )
+        {
+            return squares[a]
+        }
+    }
+
+    return null;
+}
+```
+
+Given an array of 9 squares, this function checks for a winner and return `x`, `o` or `null` as appropriate
+
+We call `calcWinner(squares)` in `Board`'s `render` to check if anyone wins.
+We can then display who won. Replace `status` declaration with this
+
+```js
+// Board.js
+render() {
+    const winner = calcWinner(this.state.squares)
+    let status
+    if (winner) {
+        status = 'Winner: ' + winner
+    }
+    else {
+        status = 'Next player: ' + (this.state.xIsNext ? 'x' : 'o')
+    }
+
+    return (
+        // ...
+    )
+}
+```
+
+Also change `handleClick` to return early by ignoring a click if someone else won the game or if a square is filled.
+
+```js
+// Board.js
+handleClick (i) {
+    const squares = this.state.squares.slice()
+    if (calcWinner(squares) || squares[i]) {
+        return;
+    }
+
+    // ...
+}
+```
+
+---
+
+## Adding Time Travel
+
+### Storing Move History
+
+### Lifting State up, again
+
+### Show past moves
+
+### Picking key
+
+### Implementing Time Travel
+
+### Wrap-up
 
 
 
