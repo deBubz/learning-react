@@ -515,17 +515,224 @@ handleClick (i) {
 
 ## Adding Time Travel
 
+Final exercise, lets add the `undo` feature 
+
 ### Storing Move History
+
+As it is *very difficult* to implement time-travel if the `squares` array are *mutable* 
+
+Since we used `slice()` to create a new copy of `squares` array after every move, hence *treated it as immutable*.
+This allows us to store every past version of the *array*, and navigate between the turns that hav already happened.
+
+We'll store the past `squares` array in another array called `history`, which represents all board states.
+It will look like this
+
+```js
+history = [
+    // blank board
+    {
+        squares: [
+            null, null, null,
+            null, null, null,
+            null, null, null,
+        ]
+    },
+    // first move
+    {
+        squares: [
+            null, null, null,
+            null, 'x', null,
+            null, null, null,
+        ]
+    },
+    // second move
+    {
+        squares: [
+            null, null, null,
+            null, 'x', null,
+            null, null, 'o',
+        ]
+    },
+    // ...
+]
+```
+
+Which component should own the `history` state
 
 ### Lifting State up, again
 
+We want the **top-level** `Game` component to display a list of past moves.
+It will need access the `history` to do that, thats where the `history` state will go.
+
+Placing the `history` state into `Game` let us remove the `squares` state from the child (`Board`) component.
+Just as we did *"lifted the state up"* from `Square` to `Board`, we are now lifting it from `Board` -> `Game`
+This gives `Game` full control over `Board`'s data, lets it instruct `Board` to render previous turns from the `history`
+
+Lets set the initial state for `Game`
+
+```js
+// Game.js
+constructor(props) {
+    super(props)
+    this.state = {
+        history: [{
+            squares: Array(9).fill(null)
+        }],
+        isNext: true,
+    }
+}
+```
+
+Nxt, we'll have the `Board` receive `squares` and `onClick` props frm the `Game` component.
+Since now we have a single click handler in `Board` for many `Squares`, we'll need to pass the location of each square into `onClick` handler to show which one was clicked.
+Heres the step to transform the `Board` component
+
+- Delete the `constructor`
+- Replace `this.state.squares[i]` with `this.props.squares[i]`
+- Replace `this.handleClick(i)` with `this.props.onClick(i)`
+
+We'll update `Game`'s component `render to use the most recent history entry to determine and display the game's status
+
+```js
+// Game.js
+render() {
+    const history = this.state.history;
+    const current = history[history.length - 1];
+    const winner = calcWinner(current.squares);
+
+    let status;
+    if (winner) {
+        status = 'Winner: ' + winner;
+    } else {
+        status = 'Next Player: ' + (this.state.xIsNext ? 'x' : 'o');
+    }
+
+    return (
+        // ...
+        <Board 
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+            />
+        // ...
+    )
+}
+```
+
+since `Game` is now rendering the game's status, we can change some from the `Board`'s render. Such as:
+
+```js
+// Board
+render () {
+    return (
+        <div>
+            <div className="board-row"></div>
+        </div>
+    )
+// everything else is the same
+}
+```
+
+Finally, move the `handleClick` from `Board` to `Game`.
+We also need to modify `handleClick` because `Game`'s state is structured differently.
+Within the `Game`'s `handeClick` method, we concatenate new history entries onto `history`
+
+```js
+// Game.js
+handleClick(i) {
+  const history = this.state.history;
+  const current = history[history.length - 1]
+  const squares = current.squares.slice()
+
+  if (calcWinner(squares) || squares[i]) return;
+
+  squares[i] = this.state.xIsNext ? 'x' : 'o'
+  this.setState({
+    history: history.concat([{
+      squares: squares,
+    }]),
+    xIsNext: !this.state.xIsNext
+  })
+}
+```
+
+> Unlike array `push()`you might be more familiar with ,`concat()` **doesn't mutate** the original array 
+
+At this point `Board` only needs `renderSquare` and `render` methods.
+The game's state and `handleClick` should be in `Game`
+
 ### Show past moves
+
+Since we're also recording *tic-tac-toe* history, we could then also display it for users to see
+
+We learned that React elements are first-class JS obj;
+We can pass them around in our applications.
+To render multiple items in React, we can use an *array* of React elements
+
+In *JS*, arrays have `map()` thats commonly used for mapping data to other data. `e.g`
+
+```js
+const num = [1, 2, 3]
+const doubled = num.map(x => x*2)
+```
+
+We can map the history of moves ro React elements representing buttons on the screen,
+and display a list of buttons to *jump* to past moves
+
+Lets `map` over the `history` in `Game`'s `render`
+
+```js
+// Game
+ const moves = history.map((step, move) => {
+  const desc = move ?
+    'Go to move #' + move :
+    'Go to game Start';
+  return (
+    <li>
+      <button onClick={() => this.jumpTo(move)}> {desc} </button> 
+    </li>
+  )
+})
+```
+
+For each move in the game history, we create a <li> which contains a <button>, 
+contains an `onClick` handler calling the method `this.jumpTo()` (to be implemented)
+
+> **Warning** each child in an array/ iterator should have a UID `key` prop.
+> Check the render method of `Game`
 
 ### Picking key
 
+The `key` property of each item is to differentiate each item of the list.
+
+When a list is re-rendered, React takes each list item key and search the previous list item for matching key.
+If current list has key that *did not* before exists, React **creates** a component.
+If current list is missing a key that *did* exist, Reacts **destroys** the previous component.
+If the **keys matches**, the corresponding component is moved.
+*Keys* tells React about the id of each component which allows React to maintain state between re-renders.
+If a component's key changes, the component will be destroyed and re-created with a new state
+
+`key` is a special reserved prop in React (also `ref`).
+When an element is created, React extracts `key` and store it directly on the returned element.
+Even if `key` may seem it belongs in `props`, `key` *cannot* be referenced using `this.props.key`.
+React automatically uses `key` to decide which component to update.
+A component cannot inquire about its `key`
+
+**Its Strongly Recommended** that you assign proper keys whenever building a dynamic list.
+If you don`t have an appropriate key, you may want to consider restructuring your data so that you do.
+
+If no key is specified, React will present a warning and use the array index as a key by default.
+Using the array index as key is **BED** when trying to re-order a list's items or inserting. removing list items.
+Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases
+
+Keys do not need to be globally unique; only need to between components and their siblings
+
 ### Implementing Time Travel
 
+
+
 ### Wrap-up
+
+
 
 
 
