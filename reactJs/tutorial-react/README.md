@@ -694,7 +694,7 @@ Lets `map` over the `history` in `Game`'s `render`
 })
 ```
 
-For each move in the game history, we create a <li> which contains a <button>, 
+For each move in the game history, we create a `<li>` which contains a `<button>`,
 contains an `onClick` handler calling the method `this.jumpTo()` (to be implemented)
 
 > **Warning** each child in an array/ iterator should have a UID `key` prop.
@@ -728,14 +728,53 @@ Keys do not need to be globally unique; only need to between components and thei
 
 ### Implementing Time Travel
 
+In the game's history, Each past move has a UID associated with it; Its the sequential number of the move.
+The moves are never re-ordered, deleted, or inserted in the middle, So its safe to use the **move index** as a key.
 
+The the `Game`'s `render`, we can add the key as `<li key={move}>` and React warning about keys should disappear.
+
+*Clicking* any of the list buttons will *throw* an error since `jumpTo()` is undefined.
+Before adding `jumpTo()` we'll add `stepNumber` to `Game` to indicate which step we're viewing.
+
+so add `stepNumber: 0` to the initial state in the Game's `constructor`
+
+Nex, define `jumpTo` method in the `Game` to update the `stepNumber`.
+We also set `xIsNext` to true if the number we're changing `stepNumber` is even:
+
+```js
+jumTo(step) {
+    this.setState({
+        stepNumber: step,
+        xIsNext: true,
+    })
+}
+```
+
+We now will also change `handleClick` method which is called when a square is clicked
+
+The `stepNumber` state we've added reflects the move displayed to the user now.
+After making a new move, we need to update `stepNumber` by adding `stepNumber: history.length` as part of `this.setState` arg.
+This ensure we don't get stuck showing the same move after a new one has been made.
+
+Also replace reading `this.state.history` with `this.state.history.slice(0, this.stepNumber + 1)`.
+This ensure if we *"go back in time"* and then make a new move from that point, 
+we throw away all the *"future"* history that would now become incorrect.
+
+Finally, we modify `Game`'s `render` method from always rendering the last moce to render the currently select move according to `stepNumber`
 
 ### Wrap-up
 
+After this done you could try adding:
 
+1. Displaying location for each move in (col, row) in the move history list
+2. Bold currently selected item in the move list.
+3. Rewrite Board to use 2 loops to make squares instead of hard coding them
+4. Add a toggle button that lets you sort the moves in either ascending/ descending order
+5. When Winning, highlight the 3 squars that casused the win.
+6. Display draw result 
 
-
-
+Try checking out [the rest od the doc](https://reactjs.org/docs/hello-world.html).
+And [`React.Component`](https://reactjs.org/docs/react-component.html) to learn more about defining
 
 
 
