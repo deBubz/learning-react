@@ -293,8 +293,80 @@ switch (action) {
 
 ## Objects
 
+JS objects can be thought of as simple collections of name-value pairs, simmilat to
 
+- Dictionaries in `py`
+- Hashes in `pearl` and `rby`
+- Hash tables in `C` and `c++`
+- HashMaps in `java`
+- Associative arrays in `php`
 
+since everything (bare core types) in JS is an object.
+Js program can naturally involves a great deal of hash table lookups. It's a good thing they're so fast.
+
+The *"name"* part is a JS string, while the value can be any JS value (incl more objs).
+This allows you to build data structures of arbitrary complexity.
+
+2 basic ways to create an empty obj
+
+```js
+var obj = new Object();
+
+var obj = {};
+```
+
+The 2nd method is called object *literal* syntax and is more convenient.
+This syntax is also the core of `json` format and should be preferred at all time.
+
+```js
+// obj literal can be used to entirely innit an object
+var obj = {
+    name: 'carrot',
+    isFor: 'Max',
+    details: {
+        color: 'orange',
+        size: 12
+    }
+};
+```
+
+Attributes access can be chained together:
+
+```js
+obj.details.color;
+obj['details']['size'];
+```
+
+### Obj Example
+
+This example creates an object `prototype` (Person) and an instance of that prototype (you)
+
+```js
+// object prototype
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// creating an object
+var you = new Person('you', 24);
+
+// accessing the object
+// dot notation
+you.name = 'me';
+var name = you.name;        // me
+
+// bracket notation
+you['name'] = 'Simon';
+var name = you['name'];     // Simon
+// can use a variable to define a key
+var user = promt('what is your key?');
+obj[user] = promt('whats the value?');
+// ???
+```
+
+**dot** and **bracket** notations are both semantically equivalent.
+ 
 
 
 
