@@ -362,10 +362,23 @@ var name = you['name'];     // Simon
 // can use a variable to define a key
 var user = promt('what is your key?');
 obj[user] = promt('whats the value?');
-// ???
+// user in obj[user] revers to the variable user
 ```
 
 **dot** and **bracket** notations are both semantically equivalent.
+The second has the **advantage** that the the prop name is provided as a *string*,
+meaning it can be calculated as at runtime.
+However, using this prevents some JS engine and minifier optimizations being applied.
+
+```js
+// it can be used to get, set props with names as reserve words
+obj.for = 'Simon';          // Syntax Error, for is a reserved word
+obj['for'] = 'Simon';       // works
+```
+
+
+
+
  
 
 
