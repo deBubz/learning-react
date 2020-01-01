@@ -14,41 +14,18 @@ so the loadded library includes
 
 The app entry point is thhe `root` *div* element (named by convention). Also the `type="text/babel"` script type, mandatory for using **Babel**
 
-Lets first start create the first **React Component** called `App`
-
-```js
-class App extends React.Component {
-    // code
-}
-```
-
-add `render()`, the only **required** method in a class component to reder DOM nodes
-
 ```js
 class App extends React.Component {
     render(){
-        return()
-    }
-}
-```
-
-in `return` were adding a simple HTML element, This is called `JSX`
-
-```js
-class App extends React.Component {
-    render(){
+        // return JSX html element
         return <h1>Hello World</h1>
     }
 }
-```
 
-Finally were using the *React DOM* `render()` to render the `App` class into the `root` div of the HTML
+// Using *React DOM* `render()` to render the `App` class into the `root` div of the HTML
 
-```js
 ReactDom.render(<App/>, document.getElementById('root'))
 ```
-
-`h1` should be rendered in the DOM when `index.html` is launched in the browser
 
 ---
 
@@ -71,17 +48,13 @@ Once you run that, a new window will pop up at `localhost:3000` with your React 
 We can start delete all files in the `/src` to create our own boilerplate file without bloat. Just keep `index.css` and `index.js`
 
 for `index.css` use whatever library you want but the guide uses [primitive css](https://taniarascia.github.io/primitive/css/main.css)
-
 in `index.js`, were importing `React`, `ReactDOM` and the css file
+
 ```js
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-```
 
-create the `App` component again, now also add an attribute to the div element
-
-```js
 class App extends Component {
     render() {
         return (
@@ -95,33 +68,23 @@ class App extends Component {
 
 ---
 
-## React Dev tools
-
-Theres an extension `React Dev Tools for Chrome`
-
-The app might seem simple element inspection, but the app gradually becomes more essential 
-
----
-
 ## JSX: Javascript + XML
 
-with `JSX` we can write what looks like HTML, also we cab create, use our own XML like tags. This is what `JSX` looks like assinged to a var
+with `JSX` we can write what looks like HTML, also we can create, use our own XML like tags.
 
 ```js
-// jsx
+// jsx assining to a variable
 const heading = <h1 className="site-heading">Hello</h1>
 ```
 
-`JSX` is not mandatory for Ract. Under the hood its running `createElement` which takes the tag, object containing the properties, and choldren of the component and reder the same information.
-
-Below code will have the same output as the `JSX` above
+`JSX` is **not mandatory** for Ract. Under the hood its running `createElement` which takes the tag, object containing the properties, and choldren of the component and reder the same information.
 
 ```js
-// no jsx
+// Without JSX, same as above
 const heading = React.createElement('h1', { classname: 'site-heading' }, 'Hello')
 ```
 
-`JSX` is closer to javascript, theres a few key differencce to note while writing
+`JSX` is closer to javascript, theres a few key difference to note while writing
 
 - `className` s used insteam of `class` for adding `css` classes, as `class` is a reserved keyword in Javascript
 - properties and methods in `JSX` are `camelCase` - `onclick` becomes `onClick`
