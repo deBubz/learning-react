@@ -23,10 +23,8 @@ class FireRss extends React.Component {
             let feed = await parser.parseURL(CORS_PROXY + 'http://www.rfs.nsw.gov.au/feeds/majorIncidents.xml', (err, feed) => {
                 if (err) throw err;
                 console.log(feed.title);
-
-                feed.forEach(element => {
-                    
-                });
+                console.log(feed.items[0].title)
+                
                 // feed.items.forEach( thing => {
                 //     console.log(thing.item.title);
                 //     console.log(thing.description);
