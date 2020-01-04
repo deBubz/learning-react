@@ -1,5 +1,4 @@
 import React from 'react';
-import testJson from './Data';
 
 // TODO
 // Fetch API
@@ -34,14 +33,24 @@ class DataReader extends React.Component {
 
     render() {
         var timezone = this.state.timeData.timezone;
-        var date = new Date(this.state.timeData.utc_datetime);
+        var date = new Date(this.state.timeData.datetime);
 
         return (
             <div className='DataReader'>
-                <p>Based your public ip: {this.state.ipData.ip}</p>
-                <p>The current date at {timezone} is {date.getFullYear()}</p>
-
-                
+                <p>
+                    Based your public ip: <a href='https://www.google.com/search?q=ip' target='_blank'>
+                         {this.state.ipData.ip}
+                    </a>
+                </p>
+                <p className='DataReader-m'>
+                    The current datetime in <span>{timezone}</span>
+                </p>
+                <p className='DataReader-m'>
+                    Is <span>{date.toDateString()}</span>
+                </p>
+                <p className='DataReader-m'>
+                    At <span>{date.toTimeString()}</span>
+                </p>
             </div>
         )
     }
