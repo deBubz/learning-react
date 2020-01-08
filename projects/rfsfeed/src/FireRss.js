@@ -43,7 +43,7 @@ class FireRss extends React.Component {
         return (
             <div>
                 <ul>
-                    <label>Its working??</label>
+                    <label>Fire alert feed</label>
                     {reports}
                     {/* {this.parse()} */}
                 </ul>
