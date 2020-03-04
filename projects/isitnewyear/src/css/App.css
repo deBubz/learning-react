@@ -16,3 +16,16 @@
 .Messages-p {
   font-size: 8px;
 }
+
+.DataReader {
+  text-align: left;
+}
+
+.DataReader-m span{
+  color: violet;
+  font-style: italic;
+}
+
+.DataReader-m span:hover{
+  color: red;
+}
