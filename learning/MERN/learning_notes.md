@@ -8,6 +8,9 @@
 - Front end
 - Connecting front to backend
 
+## App information
+
+
 ## Stack
 
 - **MongoDb** document-based open-source database
@@ -28,4 +31,9 @@
 - Create Cluster
 - Security: IP whitelist addresses
 - Connection: GUI or CLI
-  - 
+
+### Collections
+
+- Every `ex` has 1 `user
+  - Exercises
+  - User
