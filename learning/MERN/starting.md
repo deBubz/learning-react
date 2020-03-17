@@ -13,3 +13,7 @@
 - in `backend` mkdir `model` to handle mongoose schema
   - create `user.model.js`
   - create `user.exercise.js`
+- OK making Crud operations
+  - mkdir `backend/routes`
+  - create `users.js` and `exercises.js`
+- add them in the server

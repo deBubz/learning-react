@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // use mongoose schema
-const Schema = mongoosle.Schema;
+const Schema = mongoose.Schema;
 
 // user schema definition
 const userSchema = new Schema({

@@ -22,6 +22,13 @@ connection.once('open', ()=> {
     console.log("mongodb connection successfully established")
 });
 
+// adding crud routes files
+const exRouter = require('./routes/exercises');
+const userRouter = require('./routes/users');
+// routing
+app.use('/exercises', exRouter);
+app.use('/users', userRouter);
+
 // start
 app.listen(port, () => {
     console.log(`Serv running on port: ${port}`);
