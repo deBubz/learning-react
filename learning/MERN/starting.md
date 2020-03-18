@@ -35,3 +35,4 @@
   - ex-create.components.js
   - ex-edit.components.js
   - ex-list.components.js
+- `npm install react-datepicker`
