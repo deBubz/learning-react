@@ -29,3 +29,9 @@
 - start the front end `React`
 - add bootstrap with node `npm install bootstrap`
 - add `npm install react-router-dom`
+- in the `src` add a `components` folder to manage all the components
+  - navbar.components.*js*
+  - user-create.components.js
+  - ex-create.components.js
+  - ex-edit.components.js
+  - ex-list.components.js
