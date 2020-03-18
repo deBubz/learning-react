@@ -13,7 +13,19 @@
 - in `backend` mkdir `model` to handle mongoose schema
   - create `user.model.js`
   - create `user.exercise.js`
-- OK making Crud operations
+- OK making Crud API operations
   - mkdir `backend/routes`
   - create `users.js` and `exercises.js`
 - add them in the server
+  - User
+    - add new
+    - get all
+  - Exercise
+    - add new
+    - get all
+    - get by id
+    - delete by id
+    - update by id
+- start the front end `React`
+- add bootstrap with node `npm install bootstrap`
+- add `npm install react-router-dom`
