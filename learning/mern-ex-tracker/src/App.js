@@ -17,7 +17,7 @@ export default class App extends React.Component {
         <Navbar />
         <br/>
         <Route path='/' exact component={ExList} />
-        <Route path='/edit/:id' exact component={ExUpdate} />
+        <Route path='/update/:id' exact component={ExUpdate} />
         <Route path='/create' exact component={ExCreate} />
         <Route path='/user' exact component={UserCreate} />
         </div>

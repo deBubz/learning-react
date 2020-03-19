@@ -70,7 +70,9 @@ export default class ExCreate extends React.Component {
         }
 
         // add
+        // console.log('this ok')
         console.log(exercise);
+        // console.log('also ok')
         axios.post('http://localhost:8081/exercises/add', exercise)
             .then(res => console.log(res.data));
 
