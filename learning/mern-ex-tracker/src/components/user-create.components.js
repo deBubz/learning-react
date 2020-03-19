@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class UserCreate extends React.Component {
     constructor(props){
@@ -21,11 +22,15 @@ export default class UserCreate extends React.Component {
     onSubmit(e){
         e.preventDefault();
 
+        // new object
         const user = {
             username: this.state.username,
         }
 
         console.log(user);
+        // post to db
+        axios.post('http://localhost:8081/users/add', user)
+            .then(res => console.log(res.data));
 
         this.setState({
             username: '',

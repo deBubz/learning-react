@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -23,10 +24,15 @@ export default class ExCreate extends React.Component {
  
     // set state for testing
     componentDidMount() {
-        this.setState({
-            users: ['test', 'basic'],
-            username: 'test',
-        });
+        axios.get('http://localhost:8081/users/')
+            .then(res => {
+                if (res.data.length > 0){
+                    this.setState({
+                        users: res.data.map(user => user.username),
+                        username: res.data[0].username,
+                    })
+                }
+            });
     }
 
     // On Change Methods
@@ -42,7 +48,7 @@ export default class ExCreate extends React.Component {
     }
     onChangeDuration(e) {
         this.setState({
-            Duration: Number(e.target.value),
+            duration: e.target.value,
         });
     }
     onChangeDate(date) {
@@ -65,6 +71,9 @@ export default class ExCreate extends React.Component {
 
         // add
         console.log(exercise);
+        axios.post('http://localhost:8081/exercises/add', exercise)
+            .then(res => console.log(res.data));
+
         window.location = '/';      // redirect after adding
     }
 

@@ -36,3 +36,7 @@
   - ex-edit.components.js
   - ex-list.components.js
 - `npm install react-datepicker`
+
+- `npm install axios` to connect to backend
+  - add to "add user"
+  - add to "add exercise"
