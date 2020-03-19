@@ -37,7 +37,7 @@ export default class ExList extends React.Component {
 
     exList(){
         return this.state.exercises.map(curEx => {
-            return <Exercise exercise={curEx} deleteExercise={curEx} key={curEx._id} />
+            return <Exercise exercise={curEx} deleteExercise={this.deleteExercise} key={curEx._id} />
         })
     }
 
@@ -53,7 +53,7 @@ export default class ExList extends React.Component {
         return (
             <div>
                 <h3>Logged Exercise</h3>
-                <table>
+                <table className='table'>
                     <thead className='thead-light'>
                         <tr>
                             <th>Username</th>
