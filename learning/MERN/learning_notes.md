@@ -8,9 +8,6 @@
 - Front end
 - Connecting front to backend
 
-## App information
-
-
 ## Stack
 
 - **MongoDb** document-based open-source database
@@ -38,7 +35,9 @@
   - Exercises
   - User
 
+## Packages requirements
 
-## React
-
-javascript front end using components
+- Backend
+  - express cors mongoose dotenv
+- Frontend
+  - bootstrap react-router-dom react-datepicker

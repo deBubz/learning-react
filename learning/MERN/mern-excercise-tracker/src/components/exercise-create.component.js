@@ -85,7 +85,7 @@ export default class ExCreate extends React.Component {
                             value={this.state.username} 
                             onChange={this.onChangeUsername}>
                                 {
-                                    this.state.users.map(function(user) {
+                                    this.state.users.map(user => {
                                       return <option key={user} value={user}>
                                             {user}
                                         </option>;

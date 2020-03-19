@@ -5,7 +5,7 @@ export default class CreateUser extends React.Component {
         super(props);
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onSubmit = this.onSubmit.bindreducer(this);
 
         this.state = {
             username: '',
