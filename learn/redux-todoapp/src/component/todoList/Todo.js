@@ -1,11 +1,12 @@
 import React from 'react';
+// import cx from 'classnames'
 
-
-const Todo = props => {
+const Todo = ({ props }) => {
     return (
-        <div>
-            Todo Item
-        </div>
+        <li className="todo-item" onClick={() => {} /* dispatch action to toggle todo*/}>
+            { props && props.completed ? "yeet" : "ew" } { " " }
+            { props.content }
+        </li>
     );
 }
 

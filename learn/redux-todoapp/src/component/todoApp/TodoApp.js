@@ -13,8 +13,8 @@ const TodoApp = props => {
             <h3>Todo List</h3>
             <hr/>
             <>
-                <AddTodo />
-                <TodoList />
+                <AddTodo /> <br />
+                <TodoList /> <br />
                 <VisibilityFilters />
             </>
         </div>
