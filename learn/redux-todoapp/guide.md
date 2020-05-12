@@ -56,3 +56,53 @@
 > double check with the React tool to see provider connection
 
 ### Connecting Component
+
+react-redux provide `connect` function to read value of redux store ( and reread when it update )
+
+`connect` takes 2 optional args:
+
+- `mapStateToProps` called every time when store state change.
+  - recieves the the whole store state, should return an obj of data the component need
+- `mapDispatchToProps` can be a func or obj
+  - **function** called once on component creation. Recieve `dispatch` as an arg, should return an obj full of function that uses `dispatch` 
+  - **obj** (full of action creators) each action will be turned into a prop function that automatically dispatches its action when called.
+
+normally way to `connect`
+```js
+const mapStateToProps = (state, ownProps) => ({
+  // ... computed data from state and optionally ownProps
+})
+
+const mapDispatchToProps = {
+  // ... normally is an object full of action creators
+}
+
+// `connect` returns a new function that accepts the component to wrap:
+const connectToStore = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+// and that function returns the connected, wrapper component:
+const ConnectedComponent = connectToStore(Component)
+
+// We normally do both in one step, like this:
+connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component)
+```
+
+#### First work on `AddTodo`
+
+it needs to trigger `store` changes to add new Todos.
+Therefore it needs to be able to `dispatch` action to store
+
+- imports
+- use connect in export
+
+then implement `handleAddTodo` to dispatch `addTodo` action and reset the input.
+that added `<AddTodo />` into the store.
+
+when we added a todo, it dispatch an action to change the store.
+we are not sing in the app since other components are not connected yet.
+

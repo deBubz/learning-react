@@ -1,5 +1,9 @@
 import React from 'react';
 
+// redux
+import { connect } from 'react-redux'
+import { getTodos } from '../../redux/selector'
+
 import Todo from './Todo'
 
 const TodoList = ({ props }) => {
@@ -16,4 +20,13 @@ const TodoList = ({ props }) => {
     );
 }
 
-export default TodoList;
+const mapStateToProps = state => {
+    const { byIds, allIds } = state.todos || {};
+    const todos = allIds && allIds.length 
+        ? allIds.map(id => (byIds ? {...byIds[id], id} : null))
+        : null;
+    return { todos };
+}
+
+export default connect(state => ({ todos: getTodos(state) }))
+    (TodoList);

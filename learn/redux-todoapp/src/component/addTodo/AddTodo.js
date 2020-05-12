@@ -1,5 +1,9 @@
 import React from 'react';
 
+// redux import
+import { connect } from 'react-redux'
+import { addTodo } from '../../redux/action'
+
 // input box  and button to dispatch
 
 class AddTodo extends React.Component {
@@ -17,8 +21,12 @@ class AddTodo extends React.Component {
             input: e.target.value,
         })
     }
-    handleTodo = props => {
-        console.log(`hey there ${this.state.input}`);
+
+    handleTodo = () => {
+        // dispatch action to add todo
+        this.props.addTodo(this.state.input);
+
+        this.setState({ input: '', })
     }
 
     render() {
@@ -32,10 +40,9 @@ class AddTodo extends React.Component {
                     onClick={this.handleTodo}> 
                         Add Todo
                 </button>
-
             </div>
         );
     }
 }
 
-export default AddTodo;
+export default connect( null, { AddTodo } )(AddTodo);
