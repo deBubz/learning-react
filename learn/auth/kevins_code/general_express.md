@@ -11,3 +11,15 @@
   - these multiple callback functions behaves like middle ware, except these callbacks can inboke `next('route')` to pass the remaining callbacks
 
 > same for `app.get()`
+
+---
+
+## `express-validator`
+
+validating fields with `check('field')`
+
+custom error message with `withMessage('message')`
+
+> also checks for token
+
+---

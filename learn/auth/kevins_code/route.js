@@ -42,7 +42,7 @@ const {
 const { runValidation } = require('../validators');
 
 // routes
-router.post('/pre-signup', preSignupValidator, runValidation, preSignUp);
+route.post('/pre-signup', preSignupValidator, runValidation, preSignUp);
 router.post('/signup', signUpValidator, runValidation, signUp);
 router.post('/signin', preSignIn, signInValidator, runValidation, signIn);
 router.get('/signout', signOut);
