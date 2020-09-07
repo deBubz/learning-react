@@ -8,4 +8,3 @@ https://codeburst.io/to-handle-user-authentication-with-reactjs-2f565e7e0d63
 
 https://github.com/mohanramphp/auth-using-react
 
-this thing is trash, but the auth works in the sample repo
