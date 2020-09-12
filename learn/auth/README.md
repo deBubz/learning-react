@@ -1,6 +1,6 @@
 some resourses to go through??
 
-https://auth0.com/blog/complete-guide-to-react-user-authentication/
+[NEED TO IMPLEMENT AUTH0 lets not](https://auth0.com/blog/complete-guide-to-react-user-authentication/)
 
 https://jasonwatmore.com/post/2019/04/06/react-jwt-authentication-tutorial-example
 
