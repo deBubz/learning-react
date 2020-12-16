@@ -1,10 +1,13 @@
 import React from "react"
+import Header from "../components/header"
+import { Link } from "gatsby"
 
 export default function Home() {
   return (
-    <div style={{ color: 'purple'}}>
-      <h1>Hello GG</h1>
-      <p>here we go again</p>
+    <div style={{ color: `purple` }}>
+      <Header headerText="Hallo Thar" />
+      <Link to="/contacts">Contact</Link>
+      <p>What a world.</p>
       <img src="https://source.unsplash.com/random/400x200" alt="" />
     </div>
   )
