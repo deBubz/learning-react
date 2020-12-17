@@ -80,3 +80,12 @@ OK
 ---
 
 ## nested layout component
+
+> using tut 03
+
+- learn about using plugins, creating *layout* component, reusaable components
+
+
+### using plugins
+
+- very cool theres a plugins library
