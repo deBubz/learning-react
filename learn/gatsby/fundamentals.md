@@ -103,3 +103,14 @@ OK
   ```
 
 ### creating layout component
+
+- simple enough
+- basically a reusable react component
+
+### adding site title
+
+- oh just an extra header
+
+### navigation links
+
+- yep more component stuff
