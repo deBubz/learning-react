@@ -89,3 +89,17 @@ OK
 ### using plugins
 
 - very cool theres a plugins library
+- install and config `gatsby-plugin-typography`
+- edit `gatsby-config.js` to use the new plugin
+  ```js
+  module.exports = {
+    plugins: [
+      {
+        resolve: `gatsby-plugin-typography`,
+        options: { pathToConfigModule: `src/utils/typography` },
+      }
+    ]
+  }
+  ```
+
+### creating layout component
