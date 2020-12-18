@@ -114,3 +114,36 @@ OK
 ### navigation links
 
 - yep more component stuff
+
+----
+
+## Data 
+
+> OH BOY [GRAPHQL](https://www.howtographql.com/)
+
+- look at the data layer, Gatsby enable content built from Markdown, WordPress Headless CMS,...
+
+> is this like regular data binding in REACT
+
+### unstructured data v GraphQL
+
+- GraphQL is not needed to get data, use the node `createPages` to pull unstructured data
+- [gatsby without graphql](https://www.gatsbyjs.com/docs/how-to/querying-data/using-gatsby-without-graphql/)
+
+when to use either
+
+- unstructured would be more ideal in smaller projects
+- for more complex projects, you could check PluginLibrary to check if there is a plugin for your data source.
+  - OR [CREATE YOUR OWN](https://www.gatsbyjs.com/docs/creating-plugins/)
+
+### VIA GRAPHQL
+
+- graphql is a query language, works similar like sql but with its own syntax
+
+> we using example 4
+
+- again use `typographyjs` and trying `emotion` css
+- so first setup a `layout` page similar to part 3
+
+
+### First GraphQL Query
