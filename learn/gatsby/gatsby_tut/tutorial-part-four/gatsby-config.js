@@ -15,6 +15,9 @@ module.exports = {
       }
     }
   ],
+  siteMetadata: {
+    title: `Some Cheese`,
+  }
 }
 
 // module.exports = {

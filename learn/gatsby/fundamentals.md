@@ -147,3 +147,15 @@ when to use either
 
 
 ### First GraphQL Query
+
+- so youll eventually reuse common bits of data > site title
+- what happens when you want to change that.
+- Youd then need to search and edit each titles in each page components
+- its better to store title in one location and reference that in other titles
+
+the place to store this common data is `siteMetaData` object stored in `gatsby-config.js`
+
+### use page query
+
+- now to query the title using a [page query](https://www.gatsbyjs.com/docs/how-to/querying-data/page-query/)
+- ok so theres `staticQuery` allowing non page components to query data, lets use the hook `useStaticQuery`
