@@ -15,10 +15,10 @@
 
 ## some tasks
 
-- [] create input field with change listener - output entered text under it
-- [] Validation component - recieve text length as prop
-- [] Validation - output Text too short - not long enough
-- [] Char component style as inline box
+- [x] create input field with change listener - output entered text under it
+- [x] Validation component - recieve text length as prop
+- [x] Validation - output Text too short - not long enough
+- [x] Char component style as inline box
     ```
     display inline
     padding 16
@@ -26,6 +26,6 @@
     margin 16
     border
     ```
-- [] render list of char component where each char recieves a different leter
+- [x] render list of char component where each char recieves a different leter
 
 > nothing new waste of time

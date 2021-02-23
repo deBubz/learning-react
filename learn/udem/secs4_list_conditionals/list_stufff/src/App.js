@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { useState } from "react";
+import Validation from "./Validation";
+import Chars from "./Chars";
 
 function App() {
+  const [text, setText] = useState("");
+  const [count, setCount] = useState(0);
+
+  const onChange = (e) => {
+    setText(e.target.value);
+    setCount(e.target.value.length);
+  };
+
+  const renderChars = () => {
+    return text.split("").map((e, i) => <Chars odd={i % 2} c={e} key={i} />);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input onChange={onChange} />
+      <p>word count: {count}</p>
+      <Validation count={count} />
+      {renderChars()}
     </div>
   );
 }
