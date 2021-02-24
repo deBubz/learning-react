@@ -40,3 +40,8 @@
 ## css modules
 
 - talks about styling overlap when using plain css
+- this shows to away to eject the default config
+- edit webpack configuration to map custom css that would be unique to that component
+- prevent the styling overlapp of importing the plain css definition
+
+> pretty weird section
