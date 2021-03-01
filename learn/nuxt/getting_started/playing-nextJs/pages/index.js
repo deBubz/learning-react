@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Card from "./index_parts/card";
 import Footer from "./index_parts/footer";
 
 import Header from "./index_parts/head";
@@ -6,19 +7,24 @@ import Header from "./index_parts/head";
 export default function Home() {
   const cardsContent = [
     {
-      title: "Documentation &rarr;",
+      title: "Documentation",
+      link: "https://nextjs.org/docs",
       sub: "Find in-depth information about Next.js features and API.",
     },
     {
-      title: "Learn &rarr;",
+      title: "Learn",
+      link: "https://nextjs.org/learn",
       sub: "Learn about Next.js in an interactive course with quizzes!",
     },
     {
-      title: "Examples &rarr;",
+      title: "Examples",
+      link: "https://github.com/vercel/next.js/tree/master/examples",
       sub: "Discover and deploy boilerplate example Next.js projects.",
     },
     {
-      title: "Deploy &rarr;",
+      title: "Deploy",
+      link:
+        "https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app",
       sub: "Instantly deploy your Next.js site to a public URL with Vercel.",
     },
   ];
@@ -36,33 +42,9 @@ export default function Home() {
         </p>
 
         <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          {cardsContent.map((e, i) => (
+            <Card key={i} title={e.title} sub={e.sub} link={e.link} />
+          ))}
         </div>
       </main>
 
@@ -131,36 +113,6 @@ export default function Home() {
 
           max-width: 800px;
           margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
         }
 
         @media (max-width: 600px) {
