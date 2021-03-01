@@ -41,7 +41,29 @@ Routing
 ### New stuff
 
 Code splitting and prefetching
-- 
+- next automatically do code splitting
+  - each page only load what is necessary
+  - only current page is rendered initially
+  - home page load more quickly 
+- when ever `Link` appear in the browser viewport, Next will prefetch the code for the Linked page 
+
+--- 
+
+## assets, metadata and css
+
+Outline
+- add static files
+- customize `<head>`
+- create reusable components using css modules
+- add global css in `pages/_app.js`
+
+### assets
+
+- next can serve static assets under the top levevl `public` dir
+- files can be referenced from the **root** of the app similar to `pages/`
+- `public` is also good for robot.txt
+
+> to do this grab a profile pic and chuck in public/images
 
 ---
 ## misc
