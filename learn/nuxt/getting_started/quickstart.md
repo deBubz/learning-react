@@ -85,6 +85,18 @@ css modules
 - Global styles
   - code in `pages/_app.js`
 
+> styling still feels terrible to do
+
+#### styling tips
+
+- use `classname` the **library** to toggle classes
+- with no config, nuxtJS uses PostCss, customize it by creating `postcss.config.js`
+
+> this section is a mess
+
+---
+
+
 ---
 ## misc
 
