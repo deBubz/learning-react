@@ -65,6 +65,26 @@ Outline
 
 > to do this grab a profile pic and chuck in public/images
 
+- next js provide `Image` to handle responsive image, optimizing image, only load when it might enter the view port
+- `Image` component
+  - lazy load by default (load as within viewport)
+
+### meta data
+
+- to set the page metadata, use the nuxt component `Head`
+- to cusomize `<html>` tag, learn more about [custom `Document`](https://nextjs.org/docs/advanced-features/custom-document)
+
+### css
+
+- by default you can use `styled-css` within the component
+- next also support `css modules` and `sass`
+- but you can also use `styled-component` or `emotion` or `Tailwind Css` **Libraries**
+
+css modules
+- file must end with `.module.css`
+- Global styles
+  - code in `pages/_app.js`
+
 ---
 ## misc
 

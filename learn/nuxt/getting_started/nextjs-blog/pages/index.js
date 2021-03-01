@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
+import ProfileImage from "../components/Profile";
 
 export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Nuxt |</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -16,6 +17,8 @@ export default function Home() {
             <a> this page </a>
           </Link>
         </h1>
+
+        <ProfileImage />
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>
