@@ -96,6 +96,13 @@ css modules
 
 ---
 
+## Pre-rendering and Data fetching
+
+Outline
+- fetching external blog data (can work for both db or headless cms)
+- nextjs pre rendering
+- static generation & server side rendering
+- `getStaticProps` and use it to import external data
 
 ---
 ## misc
