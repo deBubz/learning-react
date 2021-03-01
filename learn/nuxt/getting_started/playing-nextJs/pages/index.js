@@ -1,12 +1,30 @@
-import Head from 'next/head'
+import Head from "next/head";
+import Footer from "./index_parts/footer";
+
+import Header from "./index_parts/head";
 
 export default function Home() {
+  const cardsContent = [
+    {
+      title: "Documentation &rarr;",
+      sub: "Find in-depth information about Next.js features and API.",
+    },
+    {
+      title: "Learn &rarr;",
+      sub: "Learn about Next.js in an interactive course with quizzes!",
+    },
+    {
+      title: "Examples &rarr;",
+      sub: "Discover and deploy boilerplate example Next.js projects.",
+    },
+    {
+      title: "Deploy &rarr;",
+      sub: "Instantly deploy your Next.js site to a public URL with Vercel.",
+    },
+  ];
   return (
     <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Header />
 
       <main>
         <h1 className="title">
@@ -48,16 +66,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
+      <Footer />
 
       <style jsx>{`
         .container {
@@ -76,30 +85,6 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
         }
 
         .title a {
@@ -178,10 +163,6 @@ export default function Home() {
           line-height: 1.5;
         }
 
-        .logo {
-          height: 1em;
-        }
-
         @media (max-width: 600px) {
           .grid {
             width: 100%;
@@ -205,5 +186,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
