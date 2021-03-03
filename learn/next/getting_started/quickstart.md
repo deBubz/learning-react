@@ -157,6 +157,17 @@ export async function getStaticProps() {
 export default Home;
 ```
 
+> something *grey-matter* Yaml front matter parsing for md files
+
+#### `getStaticProps`
+
+- only runs **server side** never client side
+- Dev v Production
+  - dev - runs on every request
+  - prod - only runs at build time
+- will not work if you need data **at request time**
+
+
 ---
 
 ## misc
