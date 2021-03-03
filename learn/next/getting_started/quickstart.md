@@ -18,7 +18,9 @@
     - [client side rendering](#client-side-rendering)
     - [SWR](#swr)
     - [recap](#recap)
-- [## dynamic routes](#-dynamic-routes)
+- [dynamic routes](#dynamic-routes)
+  - [path depending on external data](#path-depending-on-external-data)
+  - [render markdown](#render-markdown)
 - [misc](#misc)
 
 ## set up
@@ -232,9 +234,30 @@ use different rendering style for different pages
 ---
 
 ## dynamic routes
----
 
+Objectives
+- statically generate pages using dynamic routes with `getStaticPaths`
+- fetch data for each blogspot
+- render markdown with `remark`
+- pretty print date strings
+- link page with dynamic routes
 
+### path depending on external data
+
+- same as last part, use `getStaticProps` to gerate dynamic urls
+
+TODO
+- make path `posts/<id>` where `id` is the name of the markdown file under the top `posts` directory
+- steps overview
+  1. create page `[id].js` under `page/posts/` (includes the `[]` for dynamic rendering)
+  2. use `getStaticPaths` in this page to get list of possible ids
+  3. use `getStaticProps` to fetch the content for the blog page
+
+### render markdown
+
+using `remark`
+
+--- 
 ## misc
 
 avaliable in the help page

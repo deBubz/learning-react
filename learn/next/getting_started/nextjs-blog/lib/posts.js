@@ -29,6 +29,40 @@ export function getSortedPostData() {
   });
 }
 
+// return list of file name from posts/
+export function getAllPostIDs() {
+  const filename = fs.readdirSync(postDir);
+
+  // returns
+  // [
+  // { params: { id: filename }}
+  // ]
+
+  return filename.map((e) => {
+    return {
+      params: {
+        id: e.replace(/\.md$/, ""),
+      },
+    };
+  });
+
+  // must be an array of objects or getStaticPaths will fail
+}
+
+// get post data
+export function getPostData(id) {
+  const fullPath = path.join(postDir, `${id}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+
+  // parse data with gray-matter
+  const matterResult = matter(fileContents);
+
+  return {
+    id,
+    ...matterResult.data,
+  };
+}
+
 // example of fetch external data
 async function f() {
   const res = await fetch(/* api rul */);
