@@ -1,4 +1,25 @@
-ad getting started 
+- [set up](#set-up)
+- [ok basics](#ok-basics)
+- [- so far everything seems like regular react jsx](#--so-far-everything-seems-like-regular-react-jsx)
+- [Page navigation](#page-navigation)
+  - [Content](#content)
+  - [New stuff](#new-stuff)
+- [assets, metadata and css](#assets-metadata-and-css)
+  - [assets](#assets)
+  - [meta data](#meta-data)
+  - [css](#css)
+    - [styling tips](#styling-tips)
+- [Pre-rendering and Data fetching](#pre-rendering-and-data-fetching)
+  - [pre-rendering](#pre-rendering)
+    - [Comparison](#comparison)
+    - [static generation with/without data](#static-generation-withwithout-data)
+    - [`getStaticProps`](#getstaticprops)
+    - [fetching data at request time](#fetching-data-at-request-time)
+    - [client side rendering](#client-side-rendering)
+    - [SWR](#swr)
+    - [recap](#recap)
+- [## dynamic routes](#-dynamic-routes)
+- [misc](#misc)
 
 ## set up
 
@@ -104,6 +125,8 @@ Outline
 - static generation & server side rendering
 - `getStaticProps` and use it to import external data
 
+---
+
 ### pre-rendering
 
 [read more here](https://nextjs.org/docs/basic-features/pages#pre-rendering)
@@ -167,8 +190,50 @@ export default Home;
   - prod - only runs at build time
 - will not work if you need data **at request time**
 
+limitations
+- can only be limited from a page.
+- cannot be exported from non-page files.
+
+> static generation is not a good idea if you cannot pre-render pages ahead of user's request.
+>
+> try static generation
+
+#### fetching data at request time
+
+> server side rendering
+
+use `getServerSideProps`
+
+- called at request time
+- the paremer (`context`) contains request parameter
+- only if you need to pre-render page where data fetch at request time.
+
+#### client side rendering
+
+- statically render parts of the page that do not require external data
+- when page load, fetch external data using js and populate remaining parts.
+- good for dashboards
+
+#### SWR
+
+- react hook for data fetching data on client side
+- handles caching, revalidation, focus tracking, refetching on interval ...
+
+> [swr](https://swr.vercel.app/)
+
+#### recap
+
+use different rendering style for different pages
+
+- static rendering - basic page, fetch data on build 
+- server-side rendering - fetch data on request
+- client-side rednering - private data on request
 
 ---
+
+## dynamic routes
+---
+
 
 ## misc
 
