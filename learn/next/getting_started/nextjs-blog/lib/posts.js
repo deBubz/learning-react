@@ -62,7 +62,7 @@ export async function getPostData(id) {
   // convert markdown to html
   const processedContent = await remark()
     .use(html)
-    .proccess(matterResult.content);
+    .process(matterResult.content);
   const htmlContent = processedContent.toString();
   // data need to be fetch asynchronously
 
