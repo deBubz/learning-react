@@ -104,7 +104,61 @@ Outline
 - static generation & server side rendering
 - `getStaticProps` and use it to import external data
 
+### pre-rendering
+
+[read more here](https://nextjs.org/docs/basic-features/pages#pre-rendering)
+
+> disable js to check if a site is prerendered
+
+- plain react - no pre-render
+- nextjs - pre-render
+
+There are 2 forms of prerendering
+
+**Static generation** - generates html at build time, and is reused for each request
+
+**Server-side generation** - generates html at each user request
+
+> more in [pages](https://nextjs.org/docs/basic-features/pages)
+
+> everything is pre-rendered in development mode
+
+- next allow you to **choose** which pre-rendering type for each page
+  - create a *hybrid*
+
+#### Comparison
+
+- recommend using **static** generation for non-dynamic data
+  - marketting pages, landing pages, blog posts, help&documentation
+
+#### static generation with/without data
+
+- can be done for both
+- static generation with data
+  - data fetched only **at build time**
+- static generation with data using `getStaticProps`
+  - export `async getStaticProps` ths:
+    1.  runs at build time
+    2.  fetch data and set as props
+
+```js
+const Home = (props) => {}
+
+// called on build
+export async function getStaticProps() {
+  const data = // call data from file system
+
+  return {
+    props: {
+      // passed into Home
+    }
+  }
+}
+export default Home;
+```
+
 ---
+
 ## misc
 
 avaliable in the help page
