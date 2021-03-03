@@ -21,6 +21,10 @@
 - [dynamic routes](#dynamic-routes)
   - [path depending on external data](#path-depending-on-external-data)
   - [render markdown](#render-markdown)
+  - [dynamic route tips](#dynamic-route-tips)
+- [API routes](#api-routes)
+  - [creating api](#creating-api)
+  - [api details](#api-details)
 - [misc](#misc)
 
 ## set up
@@ -256,6 +260,63 @@ TODO
 ### render markdown
 
 using `remark`
+
+### dynamic route tips
+
+- works the same if fetching data from an api
+- `getStaticPath` works at build time
+
+fallback
+- remember this is also returned in `getStaticPath`
+- if `false`, any path not returned by `getStaticPath` results in a 404
+- if `true`
+  - path returned will be rendered into html at build time
+  - path not generated at build time will result in 404
+  - next serve a fallback version of the page
+- if `blocking` new path with will be server-side rendered with `getStaticProps` and cached for future request
+
+catch-all routes
+- `pages/posts/[...id].js` will also match `posts/a/b`, `posts/a/b/c`
+- for this option `getStaticPath` must return an id of array
+- and `params.id` will be an array in `getStaticProps`
+
+router
+- checkout `useRouter` hook from `next/router`
+
+custom 404 pages
+- create `pages/404.js`
+
+## API routes
+
+next allow theh creation of API endpoints as nodejs serverless function
+
+Objectives
+- how to create api routes
+- some information
+
+### creating api
+
+- you can create function inside `pages/api`
+- pages file does not alway have to be a react component
+
+### api details
+
+- do not fetch api route from `getStaticProps` or `getStaticPath`
+- either write the server sided code directly here or call a function
+  - only runs serverside and never client side
+  - not included in the blundler
+
+USECASE: handle form input
+- create a form ono page and `POST` using the serverless API route that sends directly to database
+- API route code is **not included** in the bundler so you can safely write server side code
+
+[PREVIEW MODE](https://nextjs.org/docs/advanced-features/preview-mode)
+
+- static generation is good when pages fetch data from a headless CMS
+- not ideal for draft writing when you want to preview while writing
+- you need next to render at **request time** instead of build time
+
+> save deployment for later
 
 --- 
 ## misc
