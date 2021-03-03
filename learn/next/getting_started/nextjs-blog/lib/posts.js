@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import remark from "remark";
+import html from "remark-html";
 
 // find dir to posts folder
 const postDir = path.join(process.cwd(), "posts");
@@ -49,16 +51,24 @@ export function getAllPostIDs() {
   // must be an array of objects or getStaticPaths will fail
 }
 
-// get post data
-export function getPostData(id) {
+// get blog post data
+export async function getPostData(id) {
   const fullPath = path.join(postDir, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // parse data with gray-matter
   const matterResult = matter(fileContents);
 
+  // convert markdown to html
+  const processedContent = await remark()
+    .use(html)
+    .proccess(matterResult.content);
+  const htmlContent = processedContent.toString();
+  // data need to be fetch asynchronously
+
   return {
     id,
+    htmlContent,
     ...matterResult.data,
   };
 }
