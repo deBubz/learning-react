@@ -17,7 +17,7 @@
 
 ## basic building blocks
 
-- alright functional react components wiff jsx
+- alright functional react components with jsx
 - the tut shows basic jsx nothing new
 - somethings i havent noticed
   - for SPAs component they are built to be self contained and tightly coupled within the same file
@@ -27,6 +27,7 @@
 
 - any component defined in `src/pages/*.js` becomes a page
 - lets try with `about.js`
+- use `Link` from `"gatsby"`
 - aight so best not to touch `pages` if its not a page
 - linking is done using gatsby's own component
   - > looks similar to react router dom
@@ -54,16 +55,27 @@
 
 ### component scoped css
 
-- using `css module` to containerize your css in its seperated component
-- prevent name clashing
+- using `css module` to containerize your css in its separated component
+- prevent name clashing as the bundler will set a unique class name on compile
 
 OK 
 - About is using the style from Container
 
+```
+STUFF on css module
+
+create a css file with file name
+  componentName.module.css
+import * as varName from module.css
+
+use in className by calling varName.class
+```
+
 ### style a component with css modules
 
 - create user component and style it
-- create `src/pages/about-css-modules.module.css`
+- create `./src/pages/about-css-modules.module.css`
+- create `./gatsby-browser.js`
 - import that to About
 
 
