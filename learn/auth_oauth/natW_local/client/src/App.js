@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -17,7 +16,7 @@ function App() {
     const login = () => {
         axios
             .post(
-                'http://localhost:4000/login',
+                '/api/login',
                 { username: uLog, password: pLog }
                 // { withCredentials: true }
             )
@@ -27,7 +26,7 @@ function App() {
     const register = () => {
         axios
             .post(
-                'http://localhost:4000/register',
+                '/api/register',
                 { username: uReg, password: pReg }
                 // { withCredentials: true }
             )
@@ -36,7 +35,7 @@ function App() {
     };
     const getUser = () => {
         axios
-            .get('http://localhost:4000/user')
+            .get('/api/user')
             .then(res => console.log(res.data))
             .catch(e => console.log(e));
     };
