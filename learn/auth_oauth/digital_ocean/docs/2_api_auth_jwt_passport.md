@@ -13,4 +13,24 @@ we building
 
 ---
 
-## step 1 - setup
+## step 1 - setup server
+
+some essential dependencies
+- express
+- cors
+- mongoose
+- bcrypt
+- jsonwebtoken
+- passport
+- passport-local
+- passport-jwt
+
+
+## step 2 - setting up db
+
+
+
+
+
+
+
