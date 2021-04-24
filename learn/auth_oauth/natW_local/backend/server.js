@@ -2,9 +2,6 @@
 const cors = require("cors");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const passportLocal = require("passport-local").Strategy;
-const cookie = require("cookie-parser");
-const bcryptjs = require("bcryptjs");
 const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -59,46 +56,7 @@ app.use(passport.session());
 require("./passportConf")(passport);
 
 // simple routes
-app.post("/login", (req, res, next) => {
-    console.log("login", req.body);
-    // using local strategy
-    passport.authenticate("local", (err, user, info) => {
-        if (err) throw err;
-        if (!user) res.send("No user exist");
-        else {
-            req.logIn(user, (err) => {
-                if (err) throw err;
-                res.send("authenticated");
-                console.log(req.user);
-            });
-        }
-    })(req, res, next);
-});
-
-app.post("/register", (req, res) => {
-    console.log(req.body);
-    // res.send("hello");
-    User.findOne({ username: req.body.username }, async (err, doc) => {
-        if (err) throw err;
-        if (doc) res.send("User existed");
-        if (!doc) {
-            const hash = await bcryptjs.hash(req.body.password, 10);
-            console.log("done hash");
-            const newUser = new User({
-                username: req.body.username,
-                password: hash,
-            });
-            await newUser.save();
-            console.log("user created");
-            res.status(200).json("user created");
-        }
-    });
-});
-
-// request not working, need review
-app.get("/user", (req, res) => {
-    res.send(req.user);
-});
+app.use("/api", require("./routes"));
 
 // start
 app.listen(4000, () => {
