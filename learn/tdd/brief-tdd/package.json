@@ -1,0 +1,23 @@
+{
+  "name": "brief-tdd",
+  "version": "1.0.0",
+  "description": "> [source](https://github.com/dwyl/learn-tdd)",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "live-server": "^1.2.1",
+    "nodemon": "^2.0.7",
+    "qunit-tap": "^1.5.1",
+    "qunitjs": "^2.4.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
