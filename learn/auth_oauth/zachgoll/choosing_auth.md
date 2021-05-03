@@ -8,7 +8,6 @@
   - [Session code work through](#session-code-work-through)
     - [How passport local strategy works](#how-passport-local-strategy-works)
     - [conceptual overview of session based authentication](#conceptual-overview-of-session-based-authentication)
-  - [> NOTE: have a look at express-session and connect-mongo for options](#-note-have-a-look-at-express-session-and-connect-mongo-for-options)
 
 > [source](https://zachgoll.github.io/blog/2019/choosing-authentication-strategy/#Session-Based-Authentication-Implementation)
 
@@ -162,14 +161,14 @@ user visit the page again on the next day
 11. `express-session` checks `cookie` header, find the valid sessionID.
 12. Since the sessionID is still valid, the middleware re-init the `req.session` object and set the value returned from `MongoStore`
 13. `passport.initialize()` checks `req.session.passport` for `user` object
-    - uses it to ren-init `req,user` object to be the same as the user attaached to the session from `passport.deserializeUser`
+    - uses it to ren-init `req,user` object to be the same as the user attached to the session from `passport.deserializeUser`
 
 user visit again after 2 months
 14. `express-session` checked and found an expired cookie, replacing it with a new one.
 15. `passport` middleware runs, but `express-session` had to create a `req.session.passport` object
 16. user need to log in again because of missing `req.session.passport.user` object
 
-
 > NOTE: have a look at express-session and connect-mongo for options
+
 ---
 
