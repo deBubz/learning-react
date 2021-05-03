@@ -20,15 +20,19 @@ app.use(express.urlencoded({ extended: true }));
 /**
  * Database setup
  */
-const connection = mongoose.createConnection(process.env.DB_STRING);
+const connection = mongoose.createConnection(process.env.DB_STRING, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+// missing connection?
 
 /**
  * Session setup
  */
-
 const sessionStore = new MongoStore({
     mongooseConnection: connection,
-    collection: 'session',
+    collection: 'sessions',
 });
 
 /**
