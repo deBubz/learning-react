@@ -46,4 +46,23 @@ router.get("/user", (req, res) => {
     res.send(req.user);
 });
 
+router.get("/logout", (req, res) => {
+    req.user = null;
+    res.send("logout");
+});
+
+router.get(
+    "/all",
+    (req, res, next) => {
+        console.log("all middleware");
+        next();
+    },
+    async (req, res) => {
+        const users = await User.find();
+        if (users.length === 0)
+            return res.status(200).json({ msg: "no users in db" });
+        return res.status(200).json(users);
+    }
+);
+
 module.exports = router;

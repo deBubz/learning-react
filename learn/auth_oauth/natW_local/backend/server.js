@@ -59,6 +59,6 @@ require("./passportConf")(passport);
 app.use("/api", require("./routes"));
 
 // start
-app.listen(4000, () => {
+app.listen(4040, () => {
     console.log(`Starting Server at 4000`);
 });
