@@ -12,6 +12,7 @@
     - [JTW components](#jtw-components)
     - [verifying the signature step by step](#verifying-the-signature-step-by-step)
     - [`passport-jwt` strategy](#passport-jwt-strategy)
+    - [intro to `jsonwebtoken` and `passport-jwt` config](#intro-to-jsonwebtoken-and-passport-jwt-config)
 
 > [source](https://zachgoll.github.io/blog/2019/choosing-authentication-strategy/#Session-Based-Authentication-Implementation)
 
@@ -233,6 +234,19 @@ there are many way to do JWT in your server
 
 ok so we will also use `jsonwebtoken` to generate the token.
 `passport-jwt` only verifies the token (while it is also using `jsonwebtoken` to verify the token)
+
+this is the flow:
+1. user logs in with correct credentials
+2. server sign and send back a jwt back to the user
+3. user store JWT in local storage
+4. for every request, JWT will be added into the `Authorization` Header
+5. for every request, server will run `passport.authenticate()` and verify it
+
+All that is needed is configure passport with the key, JWT algorithm and verify function.
+
+### intro to `jsonwebtoken` and `passport-jwt` config
+
+
 
 
 
