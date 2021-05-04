@@ -8,6 +8,10 @@
   - [Session code work through](#session-code-work-through)
     - [How passport local strategy works](#how-passport-local-strategy-works)
     - [conceptual overview of session based authentication](#conceptual-overview-of-session-based-authentication)
+  - [JWT Based authentication](#jwt-based-authentication)
+    - [JTW components](#jtw-components)
+    - [verifying the signature step by step](#verifying-the-signature-step-by-step)
+    - [`passport-jwt` strategy](#passport-jwt-strategy)
 
 > [source](https://zachgoll.github.io/blog/2019/choosing-authentication-strategy/#Session-Based-Authentication-Implementation)
 
@@ -171,4 +175,68 @@ user visit again after 2 months
 > NOTE: have a look at express-session and connect-mongo for options
 
 ---
+
+## JWT Based authentication
+
+> JWT allow stateless authentication.
+
+Noticing **session**, users only need to login once and visit protected routes because of the cookie. `passport` will retrieve session info from the db to authenticate the user.
+
+With **jwt** there no need for a db to authenticate users. **JWT** will then be attached to the `Authorization` header.
+
+### JTW components
+
+JWT is a data structure that contains 3 piece of data. Each part is encoded in **base64url** format.
+
+1. Header
+2. Payload
+3. Signature
+
+**header** contains the instructions for interpreting messy signature
+
+**payload** contains information about the user (this is what you set). this one contains
+- `sub` abbr for subject - representing user id
+- `name` some data about the user
+- `admin` some data about the user
+- `iat` abbr for issued at
+you may also see the following
+- `exp` abbr for expiration time
+- `iss` issuer` often used if theres a central login server for jwt tokens
+
+### verifying the signature step by step
+
+So the general auth flow would look like this
+1. server receives login credentials
+2. server verify the login credentials
+3. if it is valid, server issue and sign JWT to return to the user
+4. user use that jwt to authenticate future request in the browser
+
+when user try to access a protected route presenting the JWT, what would the server do
+1. server receives **jwt**
+2. server check if that token has an expiry
+3. if not expired, server will convert header & payload to JSON
+4. server look in the `jwt header` and check the algorithm algo
+5. server use that algo to decrypt the signature and verifying the filesystem.
+6. if all is done well, user is verified and given access
+
+So with session you need an a session store to check the cookie,
+with JWT you only need to verify the key.
+
+### `passport-jwt` strategy
+
+there are many way to do JWT in your server
+- by hand using `crypto` writing the jwt logic itself
+- using `jsonwebtoken`
+- using `passport-jwt` the only bad thing is it has bad documentation
+
+> YES it frustrating trying to finding out what is the "correct" way
+
+ok so we will also use `jsonwebtoken` to generate the token.
+`passport-jwt` only verifies the token (while it is also using `jsonwebtoken` to verify the token)
+
+
+
+
+
+
 
