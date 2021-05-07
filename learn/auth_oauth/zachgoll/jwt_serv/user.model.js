@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { stringify } = require('node:querystring');
 
 // why is salt used here
 const UserSchema = mongoose.Schema({
@@ -8,5 +7,7 @@ const UserSchema = mongoose.Schema({
     salt: String,
 });
 
-const UserModel = mongoose.modelNames('session_user', UserSchema);
+// mongoose.model('jwt_user', UserSchema);
+const UserModel = mongoose.model('jwt_user', UserSchema);
+
 module.exports = UserModel;

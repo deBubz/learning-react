@@ -13,6 +13,7 @@
     - [verifying the signature step by step](#verifying-the-signature-step-by-step)
     - [`passport-jwt` strategy](#passport-jwt-strategy)
     - [intro to `jsonwebtoken` and `passport-jwt` config](#intro-to-jsonwebtoken-and-passport-jwt-config)
+    - [jwt authentication implementation](#jwt-authentication-implementation)
 
 > [source](https://zachgoll.github.io/blog/2019/choosing-authentication-strategy/#Session-Based-Authentication-Implementation)
 
@@ -245,6 +246,22 @@ this is the flow:
 All that is needed is configure passport with the key, JWT algorithm and verify function.
 
 ### intro to `jsonwebtoken` and `passport-jwt` config
+
+assigning options in `passport-jwt` can be confusing
+
+you can pass `jsonwebtoken` options but in a certain way.
+
+> have a look at their documentation
+
+### jwt authentication implementation
+
+> well they're using angular but the concept for react should still be the same
+
+1. set up as presented in the guide
+2. password validation functions `/lib/util.js`
+3. do register user
+4. now config passport in `/config/passport.js`
+
 
 
 

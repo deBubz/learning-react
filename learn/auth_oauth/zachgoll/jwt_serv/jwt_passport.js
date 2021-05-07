@@ -23,5 +23,9 @@ passport.use(
 );
 
 /**
- * options notes
+ * This code will
+ * - grab the token from the request header in `Authorization`
+ * - extract and parse the jwt
+ * - passport-jwt will call verify from jsonwebtoken
+ * - if successful passport will find the user from the database and attached it to the request object
  */

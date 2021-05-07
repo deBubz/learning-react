@@ -4,6 +4,10 @@ const fs = require('fs');
 const PUB_KEY = fs.readFileSync(__dirname + '/id_rsa_pub.pem', 'utf8');
 const PRIV_KEY = fs.readFileSync(__dirname + '/id_rsa_priv.pem', 'utf8');
 
+/* 
+    an example on how JWT works
+*/
+
 // ============================================================
 // -------------------  SIGN ----------------------------------
 // ============================================================
