@@ -5,3 +5,4 @@
 ## projects
 
 - [REST API (ts)](./rest-ts)
+- [REST API with MongoDb (ts)](./rest-mongo-ts)
