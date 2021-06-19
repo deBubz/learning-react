@@ -38,7 +38,6 @@ function genPassword(password) {
 
 // jwt stuff --------------------------------------------------------------------------------
 const jwt = require('jsonwebtoken');
-const { pathToFileURL } = require('url');
 
 const signJwt = (user) => {
     const _id = user._id;

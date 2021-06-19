@@ -4,7 +4,6 @@ const passport = require('passport');
 const User = require('./user.model');
 
 const SECRET = 'SECRET';
-const SECRET_PUB = '';
 
 const options = {
     jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),

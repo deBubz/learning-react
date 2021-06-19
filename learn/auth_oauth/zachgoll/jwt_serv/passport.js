@@ -2,10 +2,15 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('./user.model');
 
+
+
+
 const options = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     secretOrKey: process.env.SECERET,
 };
+
+
 passport.use(
     new JwtStrategy((jwtPayload, done) => {
         // if we're here jwt is valid
