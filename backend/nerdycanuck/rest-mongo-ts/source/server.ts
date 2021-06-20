@@ -1,8 +1,10 @@
 import express from 'express';
 import log from './config/logging';
 import config from './config/config';
+import mongoose from 'mongoose';
 
-import sampleRoute from './route/sample.route';
+import sampleRoute from './route/books.route';
+import logging from './config/logging';
 
 const NAMESPACE = 'SERVER';
 const app = express();
@@ -10,6 +12,14 @@ const app = express();
 /*
     fun time
 */
+
+/** mongoDB connection */
+mongoose
+    .connect(config.mongo.url, config.mongo.options)
+    .then((res) => {
+        logging.info(NAMESPACE, 'connected to mongodb');
+    })
+    .catch((error) => log.error(NAMESPACE, 'mongodb connection error'));
 
 /* logging all requests */
 app.use((req, res, next) => {
@@ -42,7 +52,7 @@ app.use((req, res, next) => {
 });
 
 /** routes */
-app.use('/sample/', sampleRoute);
+app.use('/api/books', sampleRoute);
 
 /** error handling */
 app.use((req, res) => {

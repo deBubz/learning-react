@@ -17,3 +17,9 @@
 - the error is `res.on('finish')` is wrong, use `res.on('end')`
 
 > coolio, very straight forward, I already know all this
+
+---
+
+## adding on mongo
+
+`interface` folder
