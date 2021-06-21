@@ -23,3 +23,5 @@
 ## adding on mongo
 
 `interface` folder
+- basically creating interface for the schema model
+- have a look at the interface + model folder
