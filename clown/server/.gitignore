@@ -1,2 +1,5 @@
-serviceAccount.json
+**/serviceAccount.json
+*/serviceAccount.json
+/src/serviceAccount.json
 
+**/serviceAccount*
