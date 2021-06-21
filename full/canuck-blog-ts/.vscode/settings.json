@@ -1,0 +1,8 @@
+{
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.renderWhitespace": "all",
+        "editor.acceptSuggestionOnEnter": "off",
+        "editor.quickSuggestions": false
+    }
+}
