@@ -8,3 +8,5 @@
    - set up logger
    - setup firebase keys
 2. firebase
+   - add frontend config info
+   - backend serviceAccount info **HIDE THIS**
