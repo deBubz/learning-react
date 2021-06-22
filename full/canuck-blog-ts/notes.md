@@ -10,3 +10,8 @@
 2. firebase
    - add frontend config info
    - backend serviceAccount info **HIDE THIS**
+3. client setup
+   - so far new things are components in ts
+   - props interface, routes interface
+   - routes list in config
+4. things
