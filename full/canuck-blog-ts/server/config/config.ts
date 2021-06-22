@@ -1,23 +1,25 @@
 import dotenv from "dotenv";
 
+dotenv.config();
 /* 
-    config file
+    config exports
 */
 
-dotenv.config();
+/* server */
+const SERVER_PORT = process.env.PORT || 1337;
+const URL = `http://localhost:${SERVER_PORT}`;
 
 const config = {
-    firebase: {
-        apiKey: process.env.FIREBASE_KEY,
-        authDomain: process.env.FIREBASE_DOMAIN,
-        projectId: process.env.FIREBASE_PROJECT,
-        storageBucket: process.env.FIREGBASE_STOREBUCKET,
-        messagingSenderId: process.env.FIREBASE_MESSAGINGSENDER,
-        appId: process.env.FIREBASE_APPID,
+    mongo: {
+        url: process.env.MONGO_URL || "borked",
+        options: {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        },
     },
     server: {
-        port: 1337,
-        url: "http://localhost:1337",
+        port: SERVER_PORT,
+        url: URL,
     },
 };
 

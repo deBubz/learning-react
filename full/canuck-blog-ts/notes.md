@@ -1,12 +1,12 @@
-# Notes
+# yep
 
-> more or less just noting what dont i know
+> im a clown for not pushing work
 
-1. create-react-app client --template=typescript
-2. client packages - react-router-dom reactstrap
-
-> ok bootstrap have themes
-
-Server
-1. set up tsc
-2. setup server
+1. setup
+   - react typescript + react-router-dom + react strap, pick bootstrap theme cdn/fonts
+   - server setup config with bootstrap keys
+   - set up logger
+   - setup firebase keys
+2. firebase
+   - add frontend config info
+   - backend serviceAccount info **HIDE THIS**
