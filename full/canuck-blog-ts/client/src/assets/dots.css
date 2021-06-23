@@ -27,7 +27,7 @@
 
 .dot-elastic::before,
 .dot-elastic::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -127,7 +127,7 @@
 
 .dot-pulse::before,
 .dot-pulse::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -207,7 +207,7 @@
 
 .dot-flashing::before,
 .dot-flashing::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -261,7 +261,7 @@
 
 .dot-collision::before,
 .dot-collision::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -328,7 +328,7 @@
 
 .dot-revolution::before,
 .dot-revolution::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
 }
@@ -455,7 +455,7 @@
 
 .dot-windmill::before,
 .dot-windmill::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
 }
@@ -566,7 +566,7 @@
 
 .dot-floating::before,
 .dot-floating::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -654,7 +654,7 @@
 
 .dot-fire::before,
 .dot-fire::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -780,7 +780,7 @@
 
 .dot-falling::before,
 .dot-falling::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -866,7 +866,7 @@
 
 .dot-stretching::before,
 .dot-stretching::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -948,7 +948,7 @@
 
 .dot-gathering::before,
 .dot-gathering::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -1006,7 +1006,7 @@
 
 .dot-hourglass::before,
 .dot-hourglass::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -1084,7 +1084,7 @@
 
 .dot-overtaking::before,
 .dot-overtaking::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -1137,7 +1137,7 @@
 
 .dot-shuttle::before,
 .dot-shuttle::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     top: 0;
@@ -1185,7 +1185,7 @@
 }
 
 .dot-bouncing::before {
-    content: '⚽🏀🏐';
+    content: "⚽🏀🏐";
     display: inline-block;
     position: relative;
     animation: dotBouncing 1s infinite;
@@ -1228,7 +1228,7 @@
 }
 
 .dot-rolling::before {
-    content: '⚽';
+    content: "⚽";
     display: inline-block;
     position: relative;
     transform: translateX(-25px);
@@ -1237,39 +1237,39 @@
 
 @keyframes dotRolling {
     0% {
-        content: '⚽';
+        content: "⚽";
         transform: translateX(-25px) rotateZ(0deg);
     }
     16.667% {
-        content: '⚽';
+        content: "⚽";
         transform: translateX(25px) rotateZ(720deg);
     }
     33.333% {
-        content: '⚽';
+        content: "⚽";
         transform: translateX(-25px) rotateZ(0deg);
     }
     34.333% {
-        content: '🏀';
+        content: "🏀";
         transform: translateX(-25px) rotateZ(0deg);
     }
     50% {
-        content: '🏀';
+        content: "🏀";
         transform: translateX(25px) rotateZ(720deg);
     }
     66.667% {
-        content: '🏀';
+        content: "🏀";
         transform: translateX(-25px) rotateZ(0deg);
     }
     67.667% {
-        content: '🏐';
+        content: "🏐";
         transform: translateX(-25px) rotateZ(0deg);
     }
     83.333% {
-        content: '🏐';
+        content: "🏐";
         transform: translateX(25px) rotateZ(720deg);
     }
     100% {
-        content: '🏐';
+        content: "🏐";
         transform: translateX(-25px) rotateZ(0deg);
     }
 }

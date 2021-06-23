@@ -14,4 +14,14 @@
    - so far new things are components in ts
    - props interface, routes interface
    - routes list in config
-4. things
+   - setting up basic navigation (and layout?)
+   - component defaultProps is pretty cool, could solve alot of *undefined* variable problems while rendering
+4. client auth setup
+   - setup connection with firebase
+   - holy crap reducer pattern
+   - fucking useReducer all the bs is in `context/firebase.ts` & `modules/auth.ts`
+   - useReducer + useContext
+   > pretty interesting way to debug with useState
+   - reactstrap pretty cool
+   - pretty much the samething with context provider and auth route
+   - holycrap `login` page is nuts

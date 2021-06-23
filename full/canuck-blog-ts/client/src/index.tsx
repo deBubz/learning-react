@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
-import Application from './app/application';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import Application from "./app/application";
+import reportWebVitals from "./reportWebVitals";
+
+import "./assets/dots.css";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Application />
-  </BrowserRouter>
-  ,
-  document.getElementById('root')
+    <BrowserRouter>
+        <Application />
+    </BrowserRouter>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

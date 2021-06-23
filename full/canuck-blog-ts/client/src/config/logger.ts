@@ -1,6 +1,9 @@
+const DEFAULT_NAMESPACE = "client";
+
 /* 
     custom logging messages for debugging
 */
+
 const getTimeStamp = () => {
     return new Date().toISOString();
 };
@@ -10,11 +13,11 @@ const getTimeStamp = () => {
  * Object is optional
  */
 const log = (type: String) => {
-    return (namespace: String, msg: String, object?: Object) => {
-        if (object) {
-            console.log(`[${getTimeStamp()}] [${type}] [${namespace}] ${msg}`, object);
+    return (message: string, namespace?: string) => {
+        if (typeof message === "string") {
+            console.log(`[${getTimeStamp()}] [${namespace || DEFAULT_NAMESPACE}] [${namespace}] ${message}`);
         } else {
-            console.log(`[${getTimeStamp()}] [${type}] [${namespace}] ${msg}`);
+            console.log(`[${getTimeStamp()}] [${namespace || DEFAULT_NAMESPACE}] [${namespace}]`, message);
         }
     };
 };
@@ -22,6 +25,5 @@ const log = (type: String) => {
 const info = log("INFO");
 const error = log("ERROR");
 const warn = log("WARN");
-const debug = log("DEBUG");
 
-export default { info, error, warn, debug };
+export default { info, error, warn };
