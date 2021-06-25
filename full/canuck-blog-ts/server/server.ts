@@ -6,6 +6,9 @@ import config from "./config/config";
 import logger from "./config/logger";
 import middlewares from "./middlewares/server.mw";
 
+import userRoutes from "./routes/users.routes";
+import router from "./routes/users.routes";
+
 const app = express();
 const NAMESPACE = "servers";
 
@@ -34,6 +37,7 @@ app.use(express.json());
 app.use(middlewares.cors);
 
 /* yep routes */
+router.use("/users", userRoutes);
 
 /* no more routes */
 

@@ -25,3 +25,9 @@
    - reactstrap pretty cool
    - pretty much the samething with context provider and auth route
    - holycrap `login` page is nuts
+5. server side authentication
+   - mongo model and controllers
+   - firebase admin setup to login verify
+   - connect with frontend
+   - So far, everything is similar, the only difference is extractFirebase middleware
+   - Client now,
