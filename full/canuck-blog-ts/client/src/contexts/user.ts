@@ -13,7 +13,10 @@ export interface IUserState {
 
 export interface IUserActions {
     type: "login" | "logout";
-    payload: IUserState;
+    payload: {
+        user: IUser;
+        fire_token: string;
+    };
 }
 
 export const initialUserState: IUserState = {
@@ -50,3 +53,5 @@ const UserContext = createContext<IUserContextProps>({
 export const UserContextConsumer = UserContext.Consumer;
 export const UserContextProvider = UserContext.Provider;
 export default UserContext;
+
+// -----------------------

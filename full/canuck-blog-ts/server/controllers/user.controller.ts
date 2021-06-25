@@ -94,7 +94,7 @@ const readAll = (req: Request, res: Response, next: NextFunction) => {
             return res.status(200).json({ count: e.length, users: e });
         })
         .catch((error) => {
-            logger.error(error);
+            logger.error(NS, error);
             return res.status(500).json({ error });
         });
 };

@@ -2,9 +2,11 @@ import React, { useEffect, useReducer, useState } from "react";
 import { Switch, Route, RouteChildrenProps } from "react-router-dom";
 import AuthRoute from "../components/AuthRoute";
 import LoadingComponent from "../components/LoadingComponent";
+import logger from "../config/logger";
 
 import routes from "../config/routes.conf";
 import { initialUserState, UserContextProvider, useReducer as contextReducer } from "../contexts/user";
+import { Validate } from "../modules/auth";
 
 /* 
     Main entry point of the app
@@ -46,10 +48,15 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                 setLoading(false);
             }, 1000);
         } /* token ok, validate */ else {
-            setAuthStage("Authenticating token...");
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
+            return Validate(fire_token, (err, user) => {
+                if (err) {
+                    logger.error(err);
+                    userDispatch({ type: "logout", payload: initialUserState });
+                } else if (user) {
+                    userDispatch({ type: "login", payload: { user, fire_token } });
+                    setTimeout(() => setLoading(false), 1000);
+                }
+            });
         }
     };
 

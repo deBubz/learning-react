@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import UserContext from "../contexts/user";
 import IPageProps from "../interfaces/IPageProps";
 import firebase from "firebase";
-import { SignInWithSocialMedia as SocialMediaPopup } from "../modules/auth";
+import { Authenticate, SignInWithSocialMedia as SocialMediaPopup } from "../modules/auth";
 import logger from "../config/logger";
 
 import CenterPiece from "../components/CenterPiece";
@@ -41,6 +41,15 @@ const LoginPage: React.FunctionComponent<IPageProps> = (props) => {
                     if (name) {
                         try {
                             let fire_token = await user.getIdToken();
+                            Authenticate(uid, name, fire_token, (err, _user) => {
+                                if (err) {
+                                    setError(err);
+                                    setAuthenticating(false);
+                                } else if (user) {
+                                    userContext.userDispatch({ type: "login", payload: { user: _user, fire_token } });
+                                    history.push("/");
+                                }
+                            });
 
                             /* if we gen token, authenticate with backend */
                         } catch (error: any) {
